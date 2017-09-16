@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,22 +6,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>Change Calculator</title>
-
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
   <style>
-
     body {
       /* Source: https://uigradients.com */
       background: #3a7bd5;
       background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
       background: linear-gradient(to right, #3a6073, #3a7bd5);
+      padding-top: 15px;
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: white;
+    }
+
+    hr {
+      height: 1px;
+      color: white;
+      background: white;
+      font-size: 0;
+      border: 0;
+      margin-bottom: 30px;
+      align-content: center;
     }
   </style>
 </head>
 
 <body>
-  <div id="root"></div>
 
-  <script src="bundle.js"></script>
+  <div id="root"></div>
+  <div class="container-fluid">
+    <h1 class="text-center">Change Calculator</h1>
+    <p class="lead bg-light text-gray-dark text-center">A change calculator made in React</p>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-title">
+            Enter Information
+          </div>
+          <div class="panel-body">
+            <p>How much is due?</p>
+            <input class="form-control" id="amount-due" placeholder="Enter amount due" type="number">
+          </div>
+          <div class="panel-body">
+            <p>How much was received?</p>
+            <input class="form-control" id="amount-received" placeholder="Enter amount received" type="number">
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-primary btn-block" type="button" onClick="alert('RIGHT ON!')">Calculate</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-8">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <div class="alert alert-success text-center lead" role="alert">The total change due is: $</div>
+
+            <div class="col-sm-3">
+              <div class="well well-sm text-center lead">Twenties</div>
+              <div class="well well-sm text-center lead">Quarters</div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="well well-sm text-center lead">Tens</div>
+              <div class="well well-sm text-center lead">Dimes
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="well well-sm text-center lead">Fives</div>
+              <div class="well well-sm text-center lead">Nickels</div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="well well-sm text-center lead">Ones</div>
+              <div class="well well-sm text-center lead">Pennies</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="bundle.js">
+
+  </script>
 </body>
 
 </html>
