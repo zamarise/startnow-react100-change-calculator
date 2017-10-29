@@ -1,5 +1,5 @@
 # React Change Calculator
-> Calculates change due for each denomination contained in the state of the component and prints the number of denomations to the correct area of the application.
+> Calculates change due for each denomination contained in the state of the component and prints the number of denominations to the correct area of the application.
 
 This was my ninth project at Origin Code Academy. This change calculator was made using React.
 
