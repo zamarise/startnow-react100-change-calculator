@@ -5,14 +5,37 @@ class App extends Component {
     super(props);
 
     this.state = {
-      numberDue: 'Enter amount due'
+      amountDue: null,
+      amountReceived: null,
+      changeDue: null
     };
 
-    this.amountDue = this.amountDue.bind(this);
+    this.handleAmountDue = this.handleAmountDue.bind(this);
+    this.handleAmountReceived = this.handleAmountReceived.bind(this);
+    this.handleAllChange = this.handleAllChange.bind(this);
   }
 
-  amountDue(event) {
-    this.setState({ numberDue: event.target.value });
+  handleAmountDue(event) {
+    this.setState({ amountDue: event.target.value });
+  }
+
+  handleAmountReceived(event) {
+    this.setState({ amountReceived: event.target.value });
+  }
+
+  handleAllChange() {
+    const calculateChange = (this.state.amountReceived - this.state.amountDue).toFixed(2);
+    this.setState({
+      changeDue: calculateChange,
+      twenties: Math.floor(calculateChange / 20),
+      tens: Math.floor((calculateChange / 10) % 2),
+      fives: Math.floor((calculateChange / 5) % 2),
+      ones: Math.floor(calculateChange % 5),
+      quarters: Math.floor(((calculateChange * 100) % 100) / 25),
+      dimes: Math.floor((((calculateChange * 100) % 100) % 25) / 10),
+      nickels: Math.floor(((((calculateChange * 100) % 100) % 25) % 10) / 5),
+      pennies: Math.floor((calculateChange * 100) % 5 + 0.01)
+    });
   }
 
   render() {
@@ -31,9 +54,8 @@ class App extends Component {
                 <p>How much is due?</p>
                 <input
                   className='form-control'
-                  onChange={ this.amountDue }
-                  value={ Number(this.state.numberDue) }
-                  id='amount-due'
+                  value={ this.state.amountDue }
+                  onChange={ this.handleAmountDue }
                   placeholder='Enter amount due'
                   type='number'
                 />
@@ -42,13 +64,14 @@ class App extends Component {
                 <p>How much was received?</p>
                 <input
                   className='form-control'
-                  id='amount-received'
+                  value={ this.state.amountReceived }
+                  onChange={ this.handleAmountReceived }
                   placeholder='Enter amount received'
                   type='number'
                 />
               </div>
               <div className='panel-footer'>
-                <button className='btn btn-default btn-block' type='button'>
+                <button className='btn btn-default btn-block' type='button' onClick={ this.handleAllChange }>
                   Calculate!
                 </button>
               </div>
@@ -59,27 +82,75 @@ class App extends Component {
             <div className='panel panel-default'>
               <div className='panel-body'>
                 <div className='alert alert-success text-center lead' role='alert'>
-                  The total change due is: $
+                  Total Change Due: <div>${this.state.changeDue}</div>
                 </div>
-
-                <div className='col-sm-3'>
-                  <div className='well well-sm text-center lead'>Twenties</div>
-                  <div className='well well-sm text-center lead'>Quarters</div>
+                <div className='row'>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.twenties}
+                        <hr />
+                      </p>$20s
+                    </div>
+                  </div>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.tens}
+                        <hr />
+                      </p>$10s
+                    </div>
+                  </div>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.fives}
+                        <hr />
+                      </p>$5s
+                    </div>
+                  </div>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.ones}
+                        <hr />
+                      </p>$1s
+                    </div>
+                  </div>
                 </div>
-
-                <div className='col-sm-3'>
-                  <div className='well well-sm text-center lead'>Tens</div>
-                  <div className='well well-sm text-center lead'>Dimes</div>
-                </div>
-
-                <div className='col-sm-3'>
-                  <div className='well well-sm text-center lead'>Fives</div>
-                  <div className='well well-sm text-center lead'>Nickels</div>
-                </div>
-
-                <div className='col-sm-3'>
-                  <div className='well well-sm text-center lead'>Ones</div>
-                  <div className='well well-sm text-center lead'>Pennies</div>
+                <div className='row'>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.quarters}
+                        <hr />
+                      </p>25¢
+                    </div>
+                  </div>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.dimes}
+                        <hr />
+                      </p>10¢
+                    </div>
+                  </div>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.nickels}
+                        <hr />
+                      </p>5¢
+                    </div>
+                  </div>
+                  <div className='col-sm-3'>
+                    <div className='well well-sm text-center lead'>
+                      <p>
+                        {this.state.pennies}
+                        <hr />
+                      </p>1¢
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
