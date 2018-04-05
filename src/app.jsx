@@ -84,7 +84,7 @@ class App extends Component {
             <div className='panel panel-default'>
               <div className='panel-body'>
                 <div className='alert alert-success text-center lead' role='alert'>
-                  Total Change Due: <div>${this.state.changeDue}</div>
+                  The total change due is ${this.state.changeDue}
                 </div>
                 <div className='row'>
                   <div className='col-sm-3'>
@@ -97,7 +97,7 @@ class App extends Component {
                   </div>
                   <div className='col-sm-3'>
                     <div className='well well-sm text-center'>
-                      <p className="lead">
+                      <p className='lead'>
                         {this.state.tens}
                         <hr />
                       </p>$10s
