@@ -53,6 +53,7 @@ class App extends Component {
               <div className='panel-body'>
                 <p>How much is due?</p>
                 <input
+                  name='amountDue'
                   className='form-control'
                   value={ this.state.amountDue }
                   onChange={ this.handleAmountDue }
@@ -63,6 +64,7 @@ class App extends Component {
               <div className='panel-body'>
                 <p>How much was received?</p>
                 <input
+                  name='amountReceived'
                   className='form-control'
                   value={ this.state.amountReceived }
                   onChange={ this.handleAmountReceived }
@@ -94,8 +96,8 @@ class App extends Component {
                     </div>
                   </div>
                   <div className='col-sm-3'>
-                    <div className='well well-sm text-center lead'>
-                      <p>
+                    <div className='well well-sm text-center'>
+                      <p className="lead">
                         {this.state.tens}
                         <hr />
                       </p>$10s
